@@ -43,7 +43,7 @@ import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@SuppressWarnings({ "unchecked", "rawtypes" })
+@SuppressWarnings({"unchecked", "rawtypes"})
 public abstract class CacheTest {
 
   protected abstract InternalCache<Object, Object> getCache(Store<Object, Object> store);
@@ -218,7 +218,7 @@ public abstract class CacheTest {
     final String value = "bar";
     when(store.computeIfAbsent(eq("foo"), any(Function.class))).thenAnswer(invocationOnMock -> {
       final Function<Object, Object> biFunction
-          = (Function<Object, Object>)invocationOnMock.getArguments()[1];
+        = (Function<Object, Object>) invocationOnMock.getArguments()[1];
       if (existingValue.get() == null) {
         final Object newValue = biFunction.apply(invocationOnMock.getArguments()[0]);
         existingValue.compareAndSet(null, newValue);
@@ -316,9 +316,9 @@ public abstract class CacheTest {
     reset(hook);
     try {
       if (ehcache instanceof Ehcache) {
-        ((Ehcache)ehcache).removeHook(hook);
+        ((Ehcache) ehcache).removeHook(hook);
       } else {
-        ((Ehcache)ehcache).removeHook(hook);
+        ((Ehcache) ehcache).removeHook(hook);
       }
       fail();
     } catch (IllegalStateException e) {
